@@ -21,35 +21,35 @@ License is attribution-only.
 #define AGOL_OPT_DEFAULTS (AGOL_OPT_MEM_FAST | AGOL_OPT_TOPO_TOROID)
 
 
-
-class ArduinoGOL {
+template <uint16_t SIZE_X, uint16_t SIZE_Y> class ArduinoGOL {
   public:
-    ArduinoGOL(uint16_t x, uint16_t y, uint16_t opts = AGOL_OPT_DEFAULTS);
+    ArduinoGOL(uint16_t opts = AGOL_OPT_DEFAULTS);
     ~ArduinoGOL();
 
     /* Overrides from SensorWrapper */
-    inline int      sizeX() {   return _SIZE_X;   };
-    inline int      sizeY() {   return _SIZE_Y;   };
+    inline int      sizeX() {   return SIZE_X;    };
+    inline int      sizeY() {   return SIZE_Y;    };
     inline uint32_t frame() {   return _frame;    };
 
     int randomize(int seed);
     int next(unsigned int steps);
     inline int next() {   return next(1);   };
 
-    unsigned int getCell(unsigned int x, unsigned int y);
+    uint8_t getCell(unsigned int x, unsigned int y);
 
-    static int copy(ArduinoGOL* dest, ArduinoGOL* src);
     static int compare(ArduinoGOL* a, ArduinoGOL* b);
 
 
   private:
-    const uint16_t _SIZE_X;
-    const uint16_t _SIZE_Y;
-    const uint16_t _OPTS;
-
     uint32_t _frame = 0;
+    uint16_t _OPTS;
+    uint8_t  _field[SIZE_X][SIZE_Y];
+    char neighborhood = 'm';
 
     int _proc_life();
+
+
+    static int _copy(uint8_t* dest, uint8_t* src);
 };
 
 #endif // __ARDUINO_GOL_INCLUDE_H__

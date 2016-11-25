@@ -10,14 +10,12 @@ ArduinoGOL	KEYWORD1
 #########################################################
 
 randomize	KEYWORD2
-compare	KEYWORD2
-calculateNext	KEYWORD2
+next	KEYWORD2
+wipe	KEYWORD2
 
 sizeX	KEYWORD2
 sizeY	KEYWORD2
 getCell	KEYWORD2
 frame	KEYWORD2
-next	KEYWORD2
 
-copy	KEYWORD3
 compare	KEYWORD3

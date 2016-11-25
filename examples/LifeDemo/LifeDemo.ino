@@ -14,18 +14,16 @@ Simple sketch illustrating library usage.
 #include <ArduinoGOL.h>
 
 /* Pin definitions */
-const int PIN_LED     = 6;  // Gives a visual indication of processing time.
+const int PIN_LED = 6;  // Gives a visual indication of processing time.
 
 /* Global objects */
-ArduinoGOL gol(80, 25);
+ArduinoGOL<80, 25> gol;   // We allocate this way to keep all memory on-stack.
 
 
 void showState() {
   uint16_t x = gol.sizeX();
   uint16_t y = gol.sizeY();
-
   char* buffer[x+1];  // We aggregate output in this buffer.
-
   for (uint16_t j = 0; j < y; j++) {
     for (uint16_t i = 0; i < x; i++) {
       buffer[i] = getCell(i, j) ? '*' : ' ';
@@ -33,6 +31,22 @@ void showState() {
     buffer[x+1] = '\0';
     Serial.println(buffer);
   }
+  Serial.println(' ');
+}
+
+
+void showGOLInfo() {
+  Serial.print("Field area:        ");
+  Serial.print(gol.sizeY());
+  Serial.print(" rows by ");
+  Serial.print(gol.sizeX());
+  Serial.println(" columns");
+  Serial.print("Memory footprint:  ");
+  Serial.print(sizeof(gol));
+  Serial.println(" bytes");
+  Serial.print("Current GoL frame: ");
+  Serial.println(gol.frame());
+  Serial.println(' ');
 }
 
 
@@ -41,10 +55,9 @@ void showState() {
 *******************************************************************************/
 void setup() {
   pinMode(PIN_LED, OUTPUT);
-
-  //Initialize serial and wait for port to open:
   Serial.begin(115200);
   while (!Serial) {}
+  Serial.println("GoL demo ready.");
 }
 
 
@@ -68,6 +81,12 @@ void loop() {
         showState();
         break;
       case 'i':
+        showGOLInfo();
+        break;
+      case 'w':
+        gol.wipe();
+        // NOTE: No break;
+      case 's':
         Serial.print("Current GoL frame: ");
         Serial.println(gol.frame());
         showState();
