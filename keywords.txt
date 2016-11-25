@@ -1,0 +1,21 @@
+#########################################################
+# Class
+#########################################################
+
+ArduinoGOL	KEYWORD1
+
+
+#########################################################
+# Methods and Functions
+#########################################################
+
+copy	KEYWORD2
+compare	KEYWORD2
+randomize	KEYWORD2
+compare	KEYWORD2
+calculateNext	KEYWORD2
+
+sizeX	KEYWORD2
+sizeY	KEYWORD2
+getRoW	KEYWORD2
+getCol	KEYWORD2
