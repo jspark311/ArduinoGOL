@@ -6,8 +6,7 @@
 *
 * I have mutated the original source to fit this project. I mapped the board onto
 *   a toroid. It was a bounded plane.
-*
-*      --- J. Ian Lindsay
+*                                                      --- J. Ian Lindsay
 *
 *  http://runnable.com/u/creativename
 *  http://runnable.com/UwQvQY99xW5AAAAQ/john-conway-s-game-of-life-for-c%2B%2B-nested-for-loops-and-2-dimensional-arrays
@@ -20,7 +19,7 @@
 *  //calculations easier for the cells on the outermost "frame" of the grid.
 *******************************************************************************/
 
-int ArduinoGOL::_copy(uint8_t* dest, uint8_t* src) {
+int ConwaysGOL::_copy(uint8_t* dest, uint8_t* src) {
   if ((nullptr != dest) && (nullptr != src)) {
     if (dest->sizeX() == src->sizeX()) {
       if (dest->sizeY() == src->sizeY()) {
@@ -39,7 +38,7 @@ int ArduinoGOL::_copy(uint8_t* dest, uint8_t* src) {
 //becomes stable before the 100th generation. This
 //occurs fairly often in the Von Neumann neighborhood,
 //but almost never in the Moore neighborhood.
-int ArduinoGOL::compare(ArduinoGOL* a, ArduinoGOL* b) {
+int ConwaysGOL::compare(ConwaysGOL* a, ConwaysGOL* b) {
   if ((nullptr != a) && (nullptr != b)) {
     if (a->sizeX() == b->sizeX()) {
       if (a->sizeY() == b->sizeY()) {
@@ -55,7 +54,7 @@ int ArduinoGOL::compare(ArduinoGOL* a, ArduinoGOL* b) {
 //The life function is the most important function in the program.
 //It counts the number of cells surrounding the center cell, and
 //determines whether it lives, dies, or stays the same.
-int ArduinoGOL::_proc_life() {
+int ConwaysGOL::_proc_life() {
   //Copies the main array to a temp array so changes can be entered into a grid
   //without effecting the other cells and the calculations being performed on them.
   uint8_t temp[sizeX()][sizeY()];
@@ -105,7 +104,7 @@ uint8_t getCell(unsigned int x, unsigned int y) {
 }
 
 
-void ArduinoGOL::randomize(int seed) {
+void ConwaysGOL::randomize(int seed) {
   srand(micros());
   for (int j = 1; j < sizeY(); j++) {
     for(int i = 1; i < sizeX(); i++) {
@@ -116,7 +115,7 @@ void ArduinoGOL::randomize(int seed) {
 }
 
 
-int ArduinoGOL::next(unsigned int steps) {
+int ConwaysGOL::next(unsigned int steps) {
   while (0 < steps--) {
     _proc_life();
   }

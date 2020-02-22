@@ -11,13 +11,13 @@ Simple sketch illustrating library usage.
 
 
 #include <Serial.h>
-#include <ArduinoGOL.h>
+#include <ConwaysGOL.h>
 
 /* Pin definitions */
 const int PIN_LED = 6;  // Gives a visual indication of processing time.
 
 /* Global objects */
-ArduinoGOL<80, 25> gol;   // We allocate this way to keep all memory on-stack.
+ConwaysGOL<80, 25> gol;   // We allocate this way to keep all memory on-stack.
 
 
 void showState() {

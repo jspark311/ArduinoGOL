@@ -1,5 +1,5 @@
 /*
-File:   ArduinoGOL.h
+File:   ConwaysGOL.h
 Author: J. Ian Lindsay
 Date:   2016.11.24
 
@@ -21,10 +21,10 @@ License is attribution-only.
 #define AGOL_OPT_DEFAULTS (AGOL_OPT_MEM_FAST | AGOL_OPT_TOPO_TOROID)
 
 
-template <uint16_t SIZE_X, uint16_t SIZE_Y> class ArduinoGOL {
+template <uint16_t SIZE_X, uint16_t SIZE_Y> class ConwaysGOL {
   public:
-    ArduinoGOL(uint16_t opts = AGOL_OPT_DEFAULTS);
-    ~ArduinoGOL();
+    ConwaysGOL(uint16_t opts = AGOL_OPT_DEFAULTS);
+    ~ConwaysGOL();
 
     /* Overrides from SensorWrapper */
     inline int      sizeX() {   return SIZE_X;    };
@@ -37,7 +37,7 @@ template <uint16_t SIZE_X, uint16_t SIZE_Y> class ArduinoGOL {
 
     uint8_t getCell(unsigned int x, unsigned int y);
 
-    static int compare(ArduinoGOL* a, ArduinoGOL* b);
+    static int compare(ConwaysGOL* a, ConwaysGOL* b);
 
 
   private:

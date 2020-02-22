@@ -1,4 +1,4 @@
-ArduinoGOL
+ConwaysGOL
 ======================
 
 This implementation of GoL was originally written by user [creativename](http://code.runnable.com/u/creativename). I have improved it slightly and bent it into an Arduino library. Original commentary is preserved where it is still relevant.
